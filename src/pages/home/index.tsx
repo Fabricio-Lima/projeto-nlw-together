@@ -4,46 +4,64 @@ import illustration from '../../assets/images/illustration.svg'
 import Image from 'next/image'
 import logo from '../../assets/images/logo.svg'
 import logoGoogle from '../../assets/images/google-icon.svg'
-import { Wrapper } from './styles'
+import { 
+    Aside, 
+    Button, 
+    Container, 
+    Forms, 
+    IconGoogle, 
+    Section, 
+    Separator,
+    Wrapper, 
+    Illustration 
+} from './styles'
+import StyledButton from '../../components/Button'
 
 const Home: NextPage = () => {
     return (
         <>
             <Head>
-                <title>Create Next App</title>
+                <title>Login</title>
             </Head>
 
             <Wrapper>
-                <aside>
-                    <Image src={illustration} alt='ilustracao' />
+                <Aside>
+                    <Illustration>
+                        <Image src={illustration} alt='ilustracao'/>
+                    </Illustration>
                     <strong>
                         Crie salas de Q&amp;A ao-vivo
                     </strong>
                     <p>
                         Tire as dúvidas da sua audiência em tempo real
                     </p>
-                </aside>
-                <main>
-                    <div>
+                </Aside>
+
+                <Section>
+                    <Container>
                         <Image src={logo} alt='letmeask' />
-                        <button>
-                            <Image src={logoGoogle} alt='logo-google'/> 
+                        <Button>
+                            <IconGoogle>
+                                <Image src={logoGoogle} alt='logo-google'/> 
+                            </IconGoogle>
                             Crie sua sala com o Google
-                        </button>
-                        <div>
+                        </Button>
+                        <Separator>
                             ou entre em uma sala
-                        </div>
-                        <form>
+                        </Separator>
+
+                        <Forms>
                             <input 
                                 type='text'
                                 placeholder='Digite o código da sala'
                             />
-                            <button type='submit'>
+                            <StyledButton type='submit'>
                                 Entrar na sala
-                            </button>
-                        </form>
-                    </div>
-                </main>
+                            </StyledButton>
+                        </Forms>
+                    </Container>
+                </Section>
+
             </Wrapper>
         </>
     )
