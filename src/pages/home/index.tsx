@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 import illustration from '../../assets/images/illustration.svg'
 import Image from 'next/image'
@@ -15,10 +16,13 @@ import {
     Illustration, 
     ButtonGoogle
 } from './styles'
-import StyledButton from '../../components/Button'
+
 import Button from '../../components/Button'
 
 const Home: NextPage = () => {
+
+    const router = useRouter()
+
     return (
         <>
             <Head>
@@ -41,7 +45,7 @@ const Home: NextPage = () => {
                 <Section>
                     <Container>
                         <Image src={logo} alt='letmeask' />
-                        <ButtonGoogle>
+                        <ButtonGoogle onClick={() => router.push('/room/new')}>
                             <IconGoogle>
                                 <Image src={logoGoogle} alt='logo-google'/> 
                             </IconGoogle>
