@@ -6,16 +6,17 @@ import logo from '../../assets/images/logo.svg'
 import logoGoogle from '../../assets/images/google-icon.svg'
 import { 
     Aside, 
-    Button, 
     Container, 
     Forms, 
     IconGoogle, 
     Section, 
     Separator,
     Wrapper, 
-    Illustration 
+    Illustration, 
+    ButtonGoogle
 } from './styles'
 import StyledButton from '../../components/Button'
+import Button from '../../components/Button'
 
 const Home: NextPage = () => {
     return (
@@ -40,12 +41,12 @@ const Home: NextPage = () => {
                 <Section>
                     <Container>
                         <Image src={logo} alt='letmeask' />
-                        <Button>
+                        <ButtonGoogle>
                             <IconGoogle>
                                 <Image src={logoGoogle} alt='logo-google'/> 
                             </IconGoogle>
                             Crie sua sala com o Google
-                        </Button>
+                        </ButtonGoogle>
                         <Separator>
                             ou entre em uma sala
                         </Separator>
@@ -55,9 +56,9 @@ const Home: NextPage = () => {
                                 type='text'
                                 placeholder='Digite o código da sala'
                             />
-                            <StyledButton type='submit'>
+                            <Button type='submit' className='purple'>
                                 Entrar na sala
-                            </StyledButton>
+                            </Button>
                         </Forms>
                     </Container>
                 </Section>

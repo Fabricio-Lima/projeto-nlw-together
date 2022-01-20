@@ -11,8 +11,8 @@ export const Aside = styled.aside`
     flex: 7;
     height: 100vh;
 
-    background: #835afd;
-    color: #FFF;
+    background: ${( props ) => props.theme.colors.primary };
+    color: ${( props ) => props.theme.colors.background };
 
     display: flex;
     flex-direction: column;
@@ -21,16 +21,18 @@ export const Aside = styled.aside`
     padding: 120px 80px;
 
     > strong {
-        font: 700 36px 'Poppins', sans-serif;
+        font-family: ${(props) => props.theme.fonts.secundaryFont};
         line-height: 42px;
         margin-top: 16px;
+        font-size: 36px;
+        font-weight: 700;
     }
 
     > p {
         font-size: 24px;
         line-height: 32px;
         margin-top: 16px;
-        color: #f8f8f8
+        color: ${( props ) => props.theme.colors.text};
     }
 }
 `;
@@ -67,13 +69,13 @@ export const IconGoogle = styled.div`
     margin-top: 5px;
 `;
 
-export const Button = styled.button`
+export const ButtonGoogle = styled.button`
     margin-top: 64px;
     height: 50px;
     border-radius: 8px;
     font-weight: 500;
-    background: #ea4335;
-    color: #FFF;
+    background: ${( props ) => props.theme.colors.secundary };
+    color: ${( props ) => props.theme.colors.background };
 
     display: flex;
     justify-content: center;
@@ -91,7 +93,7 @@ export const Button = styled.button`
 
 export const Separator = styled.div`
     font-size: 14px;
-    color: #a8a8b3;
+    color: ${( props ) => props.theme.colors.textSecundary};
 
     margin: 32px 0;
     display: flex;
@@ -101,7 +103,7 @@ export const Separator = styled.div`
         content: '';
         flex: 1;
         height: 1px;
-        background: #a8a8b3;
+        background: ${( props ) => props.theme.colors.textSecundary};
         margin-right: 16px;
     }
 
@@ -109,7 +111,7 @@ export const Separator = styled.div`
         content: '';
         flex: 1;
         height: 1px;
-        background: #a8a8b3;
+        background: ${( props ) => props.theme.colors.textSecundary};
         margin-left: 16px;
     }
 `;
@@ -119,8 +121,8 @@ export const Forms = styled.form`
         height: 50px;
         border-radius: 8px;
         padding: 0 16px;
-        background: #FFF;
-        border: 1px solid #a8a8b3;
+        background: ${( props ) => props.theme.colors.background };
+        border: 1px solid ${( props ) => props.theme.colors.textSecundary};
     }
 
     > button {
@@ -133,7 +135,7 @@ export const Forms = styled.form`
 
         &:focus {
             outline: none;
-            border: 2px solid #835afd;
+            border: 2px solid ${( props ) => props.theme.colors.primary };
         }
     }
 `;
