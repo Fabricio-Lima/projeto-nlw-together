@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
+import { auth, firebase } from '../../services/firebase'
 import illustration from '../../assets/images/illustration.svg'
 import Image from 'next/image'
 import logo from '../../assets/images/logo.svg'
@@ -16,12 +17,19 @@ import {
     Illustration, 
     ButtonGoogle
 } from './styles'
-
 import Button from '../../components/Button'
 
 const Home: NextPage = () => {
 
     const router = useRouter()
+
+    const handleCreateRoom = () => {
+        const provider = new firebase.auth.GoogleAuthProvider()
+
+        auth.signInWithPopup(provider).then(result => console.log(result))
+
+        //router.push('/room/new')
+    }
 
     return (
         <>
@@ -45,7 +53,7 @@ const Home: NextPage = () => {
                 <Section>
                     <Container>
                         <Image src={logo} alt='letmeask' />
-                        <ButtonGoogle onClick={() => router.push('/room/new')}>
+                        <ButtonGoogle onClick={handleCreateRoom}>
                             <IconGoogle>
                                 <Image src={logoGoogle} alt='logo-google'/> 
                             </IconGoogle>
