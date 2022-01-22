@@ -18,17 +18,17 @@ import {
     ButtonGoogle
 } from './styles'
 import Button from '../../components/Button'
+import { useAuth } from '../../context/auth.context'
 
 const Home: NextPage = () => {
 
     const router = useRouter()
+    const { user, signInWithGoogle } = useAuth()
 
-    const handleCreateRoom = () => {
-        const provider = new firebase.auth.GoogleAuthProvider()
+    const handleCreateRoom = async () => {
+        if(!user) await signInWithGoogle()
 
-        auth.signInWithPopup(provider).then(result => console.log(result))
-
-        //router.push('/room/new')
+        router.push('/room/new')
     }
 
     return (
