@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-import { auth, firebase } from '../../services/firebase'
+import { FormEvent, useState } from 'react'
 import illustration from '../../assets/images/illustration.svg'
 import Image from 'next/image'
 import logo from '../../assets/images/logo.svg'
@@ -19,16 +19,37 @@ import {
 } from './styles'
 import Button from '../../components/Button'
 import { useAuth } from '../../context/auth.context'
+import { database } from '../../services/firebase'
 
 const Home: NextPage = () => {
 
     const router = useRouter()
+
     const { user, signInWithGoogle } = useAuth()
+
+    const [ roomCode, setRoomCode ] = useState('')
 
     const handleCreateRoom = async () => {
         if(!user) await signInWithGoogle()
 
         router.push('/room/new')
+    }
+
+    const handleJoinRoom = async (event: FormEvent) => {
+        event.preventDefault()
+
+        if (roomCode.trim() === ''){
+            return
+        }
+
+        const roomRef = await database.ref(`rooms/${roomCode}`).get()
+
+        if(!roomRef.exists()){
+            alert('Room does not exists')
+            return
+        }
+
+        router.push(`/room/${encodeURIComponent(roomCode)}`)
     }
 
     return (
@@ -63,10 +84,12 @@ const Home: NextPage = () => {
                             ou entre em uma sala
                         </Separator>
 
-                        <Forms>
+                        <Forms onSubmit={handleJoinRoom}>
                             <input 
                                 type='text'
                                 placeholder='Digite o código da sala'
+                                value={roomCode}
+                                onChange={event => setRoomCode(event.target.value)}
                             />
                             <Button type='submit' className='purple'>
                                 Entrar na sala
