@@ -79,8 +79,7 @@ const NewRoom: NextPage = () => {
                                 Criar sala
                             </Button>
                             <p>
-                                Quer entrar em uma sala existente?
-                                <Link href='/'> Clique Aqui </Link>
+                                Quer entrar em uma sala existente? <Link href='/'>Clique Aqui</Link>
                             </p>
                         </Forms>
                     </Container>

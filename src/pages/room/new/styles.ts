@@ -100,7 +100,7 @@ export const Forms = styled.form`
 
         > a {
             color: #e559f9;
-            text-decoration: none;
+            text-decoration: underline;
         }
     }
 
