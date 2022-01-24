@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
 export const Content = styled.button`
-    margin-top: 64px;
     height: 50px;
     border-radius: 8px;
+    padding: 15px 25px;
     font-weight: 500;
     color: ${(props) => props.theme.colors.background};
 
