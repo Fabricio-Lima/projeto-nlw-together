@@ -76,5 +76,16 @@ export const FooterForm = styled.div`
             font-weight: 500;
         }
     }
+`;
 
+export const UserInfo = styled.div`
+    display: flex;
+    align-items: center;
+
+    > span {
+        margin-left: 8px;
+        color: #29292e;
+        font-weight: 500;
+        font-size: 14px;
+    }
 `;
