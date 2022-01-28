@@ -75,7 +75,7 @@ const NewRoom: NextPage = () => {
                                 value={newRoom}
                                 onChange={event => setNewRoom(event.target.value)}
                             />
-                            <Button type='submit' className='purple'>
+                            <Button type='submit'>
                                 Criar sala
                             </Button>
                             <p>
