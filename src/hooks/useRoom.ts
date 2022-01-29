@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useAuth } from "../context/auth.context"
 import { database } from "../services/firebase"
 
 type FirebaseQuestions = Record<string, {
@@ -9,6 +10,9 @@ type FirebaseQuestions = Record<string, {
     content: string
     isAnswered: boolean
     isHighlighted: boolean
+    likes: Record<string, {
+        authorId: string
+    }>
 }>
 
 type QuestionsType = {
@@ -19,10 +23,13 @@ type QuestionsType = {
     },
     content: string,
     isAnswered: boolean,
-    isHighlighted: boolean
+    isHighlighted: boolean,
+    likeCount: number,
+    likeId: string | undefined
 }
 
 const useRoom = (roomId: string) => {
+    const { user } = useAuth()
     const [ questions, setQuestions ] = useState<QuestionsType[]>([])
     const [ title, setTitle ] = useState('')
 
@@ -30,7 +37,7 @@ const useRoom = (roomId: string) => {
         const roomRef = database.ref(`rooms/${roomId}`) 
 
         roomRef.on('value', room => {
-            const databaseRoom = room.val()
+            const databaseRoom = room.val() || ''
             const firebaseQuestions: FirebaseQuestions = databaseRoom.questions ?? {}
             const parsedQuestions = Object.entries(firebaseQuestions).map(([key, value]) => {
                 return {
@@ -38,14 +45,21 @@ const useRoom = (roomId: string) => {
                     content: value.content,
                     author: value.author,
                     isHighlighted: value.isHighlighted,
-                    isAnswered: value.isAnswered
+                    isAnswered: value.isAnswered,
+                    likeCount: Object.values(value.likes ?? {}).length,
+                    likeId: Object.entries(value.likes ?? {}).find(([key, like]) => like.authorId === user?.id)?.[0]
                 }
             })
 
             setTitle(databaseRoom.title)
             setQuestions(parsedQuestions)
         })
-    }, [roomId])
+
+        return () => {
+            roomRef.off('value')
+        }
+        
+    }, [roomId, user?.id])
 
     return { questions, title }
 }
