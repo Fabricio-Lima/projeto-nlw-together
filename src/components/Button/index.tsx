@@ -10,7 +10,7 @@ const Button = ({isOutlined = false, ...Props}: ButtonProps) => {
     return (
         <Content 
             {...Props} 
-            className={`button ${isOutlined} ? 'outlined' : ''`}
+            className={`button ${isOutlined ? 'outlined' : ''}`}
         />
     )
 }

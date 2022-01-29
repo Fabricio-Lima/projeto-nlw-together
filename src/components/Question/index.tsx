@@ -1,13 +1,15 @@
 import Image from 'next/image'
-import { Footer, Section, UserInfo } from './styles'
+import { ReactNode } from 'react'
+import { Buttons, Footer, Section, UserInfo } from './styles'
 
 type QuestionProps = {
     content: string,
     author: string,
     avatar: string
+    children?: ReactNode
 }
 
-const Question = ({ author, avatar, content }: QuestionProps) => {
+const Question = ({ author, avatar, content, children }: QuestionProps) => {
     return (
         <Section>
             <p>
@@ -27,9 +29,9 @@ const Question = ({ author, avatar, content }: QuestionProps) => {
                         {author}
                     </span>
                 </UserInfo>
-                <div>
-                    { /***/ }
-                </div>
+                <Buttons>
+                    {children}
+                </Buttons>
             </Footer>
         </Section>
     )

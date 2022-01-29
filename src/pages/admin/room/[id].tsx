@@ -3,7 +3,7 @@ import Head from "next/head"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { FormEvent, useState } from "react"
-import logo from '../../assets/images/logo.svg'
+import logo from '../../../assets/images/logo.svg'
 import { Button, Question, RoomCode } from '../../../components/index'
 import { useAuth } from "../../../context/auth.context"
 import useRoom from "../../../hooks/useRoom"
@@ -68,10 +68,7 @@ const Room: NextPage = () => {
                     />
                     <ButtonsNavBar>
                         <RoomCode code={ String(roomId) }/>
-                        <Button 
-                            className="purple" 
-                            isOutlined 
-                        > Encerrar sala </Button>
+                        <Button isOutlined> Encerrar sala </Button>
                     </ButtonsNavBar>
                 </Content>
             </Header>

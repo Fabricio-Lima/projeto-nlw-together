@@ -32,3 +32,34 @@ export const UserInfo = styled.div`
         font-size: 14px;
     }
 `;
+
+export const Buttons = styled.div`
+
+    > button {
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+        transition: filter 0.2s;
+
+        &.like-button {
+            display: flex;
+            align-items: flex-end;
+            color: #737380;
+            gap: 8px;
+
+            &.liked {
+                color: ${( props ) => props.theme.colors.primary};
+                
+                svg path {
+                    stroke: ${( props ) => props.theme.colors.primary};;
+                }
+            }
+        }
+
+
+
+        &:hover {
+            filter: brightness(0.6);
+        }
+    }
+`;

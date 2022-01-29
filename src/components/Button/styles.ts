@@ -27,9 +27,9 @@ export const Content = styled.button`
     }
 
     &.outlined {
-        background: ${( props ) => props.theme.colors.background}
-        border: 1px solid ${( props ) => props.theme.colors.primary}
-        color: ${( props ) => props.theme.colors.primary}
+        background: ${( props ) => props.theme.colors.background};
+        border: 1px solid ${( props ) => props.theme.colors.primary};
+        color: ${( props ) => props.theme.colors.primary};
     }
 
 `;
