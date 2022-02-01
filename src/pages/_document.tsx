@@ -10,10 +10,11 @@ export default function Document() {
                 <link rel="icon" href="/favicon.ico" />
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
             </Head>
-                <body>
-                    <Main />
-                    <NextScript />
-                </body>
+            <body>
+                <Main />
+                <NextScript />
+                <div id="modal-root" />
+            </body>
         </Html>
     )
 }
