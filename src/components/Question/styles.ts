@@ -51,12 +51,10 @@ export const Buttons = styled.div`
                 color: ${( props ) => props.theme.colors.primary};
                 
                 svg path {
-                    stroke: ${( props ) => props.theme.colors.primary};;
+                    stroke: ${( props ) => props.theme.colors.primary};
                 }
             }
         }
-
-
 
         &:hover {
             filter: brightness(0.6);

@@ -2,6 +2,8 @@ import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { FormEvent, useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import illustration from '../../assets/images/illustration.svg'
 import Image from 'next/image'
 import logo from '../../assets/images/logo.svg'
@@ -24,15 +26,25 @@ import { database } from '../../services/firebase'
 const Home: NextPage = () => {
 
     const router = useRouter()
-
     const { user, signInWithGoogle } = useAuth()
-
     const [ roomCode, setRoomCode ] = useState('')
 
     const handleCreateRoom = async () => {
         if(!user) await signInWithGoogle()
 
         router.push('/room/new')
+    }
+
+    function notifyError(message?: string){
+        toast.error(`${message}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        })
     }
 
     const handleJoinRoom = async (event: FormEvent) => {
@@ -45,10 +57,15 @@ const Home: NextPage = () => {
         const roomRef = await database.ref(`rooms/${roomCode}`).get()
 
         if(!roomRef.exists()){
-            alert('Room does not exists')
+            notifyError('Room is not found!')
+            return
+        }   
+        
+        if(roomRef.val().endAt) {
+            notifyError('Room already closed!')
             return
         }
-
+        
         router.push(`/room/${encodeURIComponent(roomCode)}`)
     }
 
