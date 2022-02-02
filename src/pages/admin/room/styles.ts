@@ -44,6 +44,29 @@ export const QuestionList = styled.div`
     margin-top: 32px;
 `;
 
+export const ButtonsQuestion = styled.div`
+    display: flex;
+    gap: 16px;
+
+    > button {
+        border: none;
+        background: none;
+        cursor: pointer;
+
+        &.liked {
+            color: ${( props ) => props.theme.colors.primary};
+            
+            svg path {
+                stroke: ${( props ) => props.theme.colors.primary};
+            }
+        }
+
+        &:hover {
+            filter: brightness(0.6);
+        }
+    }
+`;
+
 export const ButtonsNavBar = styled.div`
     display: flex;    
     gap: 16px;

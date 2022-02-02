@@ -1,17 +1,34 @@
 import Image from 'next/image'
 import { ReactNode } from 'react'
 import { Buttons, Footer, Section, UserInfo } from './styles'
+import cx from 'classnames'
 
 type QuestionProps = {
     content: string,
     author: string,
     avatar: string
-    children?: ReactNode
+    children?: ReactNode,
+    isAnswered?: boolean,
+    isHighlighted?: boolean
 }
 
-const Question = ({ author, avatar, content, children }: QuestionProps) => {
+const Question = (
+    {   author, 
+        avatar, 
+        content, 
+        children, 
+        isAnswered = false, 
+        isHighlighted = false 
+    }: QuestionProps) => {
+
+
     return (
-        <Section>
+        <Section 
+            className={cx( 
+                { answered: isAnswered}, 
+                { highlighted: isHighlighted && (!isAnswered) }, 
+            )}
+        >
             <p>
                 {content}
             </p>

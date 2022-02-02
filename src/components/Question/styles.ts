@@ -13,6 +13,21 @@ export const Section = styled.div`
     > p {
         color: #29292e;
     }
+
+    &.highlighted {
+        background: #f4f0ff;
+        border: 1px solid ${( props ) => props.theme.colors.primary};
+
+        > footer span {
+            color: #29292e;
+        }
+    }
+    
+    &.answered {
+        background: #dbdcdd;
+    }
+
+
 `;
 
 export const Footer = styled.footer`
